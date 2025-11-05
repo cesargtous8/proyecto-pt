@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-11-03T23:00:25.057813",
+  "data": {
+    "id": "prod-001",
+    "name": "Laptop Gaming",
+    "description": "High performance gaming laptop",
+    "price": 1299.99,
+    "createdAt": "2025-11-03T22:58:03.931842",
+    "updatedAt": "2025-11-03T22:58:03.931842"
+  },
+  "success": true
+}

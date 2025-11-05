@@ -1,0 +1,12 @@
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\dto\ApiResponse.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\dto\ProductResponse.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\service\InventoryService.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\config\DataInitializer.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\controller\InventoryController.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\dto\InventoryRequest.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\domain\Inventory.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\repository\InventoryRepository.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\config\FeignConfig.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\config\CorsConfig.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\InventoryServiceApplication.java
+C:\Users\LENOVO\Documents\Pruebas\proyecto-pt\backend\inventory-service\src\main\java\com\fullstack\inventory\client\ProductServiceClient.java

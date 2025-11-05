@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-11-03T22:59:57.4710692",
+  "data": {
+    "content": [
+      {
+        "id": "prod-001",
+        "name": "Laptop Gaming",
+        "description": "High performance gaming laptop",
+        "price": 1299.99,
+        "createdAt": "2025-11-03T22:58:03.931842",
+        "updatedAt": "2025-11-03T22:58:03.931842"
+      },
+      {
+        "id": "prod-002",
+        "name": "Wireless Mouse",
+        "description": "Ergonomic wireless mouse",
+        "price": 49.99,
+        "createdAt": "2025-11-03T22:58:03.932548",
+        "updatedAt": "2025-11-03T22:58:03.932548"
+      },
+      {
+        "id": "prod-003",
+        "name": "Mechanical Keyboard",
+        "description": "RGB mechanical keyboard",
+        "price": 89.99,
+        "createdAt": "2025-11-03T22:58:03.932548",
+        "updatedAt": "2025-11-03T22:58:03.932548"
+      }
+    ],
+    "pageable": {
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "offset": 0,
+      "pageSize": 10,
+      "pageNumber": 0,
+      "unpaged": false,
+      "paged": true
+    },
+    "last": true,
+    "totalElements": 3,
+    "totalPages": 1,
+    "first": true,
+    "size": 10,
+    "number": 0,
+    "sort": {
+      "empty": true,
+      "sorted": false,
+      "unsorted": true
+    },
+    "numberOfElements": 3,
+    "empty": false
+  },
+  "success": true
+}

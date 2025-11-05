@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-11-03T23:00:32.9160219",
+  "data": {
+    "id": "prod-002",
+    "name": "Wireless Mouse",
+    "description": "Ergonomic wireless mouse",
+    "price": 49.99,
+    "createdAt": "2025-11-03T22:58:03.932548",
+    "updatedAt": "2025-11-03T22:58:03.932548"
+  },
+  "success": true
+}

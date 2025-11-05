@@ -1,0 +1,12 @@
+com\fullstack\inventory\dto\InventoryRequest.class
+com\fullstack\inventory\config\DataInitializer.class
+com\fullstack\inventory\service\InventoryService.class
+com\fullstack\inventory\domain\Inventory.class
+com\fullstack\inventory\repository\InventoryRepository.class
+com\fullstack\inventory\config\CorsConfig.class
+com\fullstack\inventory\config\FeignConfig.class
+com\fullstack\inventory\InventoryServiceApplication.class
+com\fullstack\inventory\client\ProductServiceClient.class
+com\fullstack\inventory\controller\InventoryController.class
+com\fullstack\inventory\dto\ApiResponse.class
+com\fullstack\inventory\dto\ProductResponse.class
