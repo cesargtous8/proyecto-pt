@@ -1,10 +1,10 @@
-com\fullstack\product\dto\ApiResponse$ErrorDetail.class
-com\fullstack\product\config\SwaggerConfig.class
-com\fullstack\product\dto\ProductRequest.class
 com\fullstack\product\dto\ApiResponse.class
-com\fullstack\product\domain\Product.class
-com\fullstack\product\ProductServiceApplication.class
-com\fullstack\product\repository\ProductRepository.class
 com\fullstack\product\service\DataInitializer.class
 com\fullstack\product\service\ProductService.class
 com\fullstack\product\controller\ProductController.class
+com\fullstack\product\dto\ApiResponse$ErrorDetail.class
+com\fullstack\product\config\SwaggerConfig.class
+com\fullstack\product\dto\ProductRequest.class
+com\fullstack\product\domain\Product.class
+com\fullstack\product\ProductServiceApplication.class
+com\fullstack\product\repository\ProductRepository.class

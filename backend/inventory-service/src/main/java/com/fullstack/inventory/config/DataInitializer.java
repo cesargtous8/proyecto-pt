@@ -2,8 +2,6 @@ package com.fullstack.inventory.config;
 
 import com.fullstack.inventory.domain.Inventory;
 import com.fullstack.inventory.repository.InventoryRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,8 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
-    
     @Autowired
     private InventoryRepository inventoryRepository;
 
@@ -20,19 +16,21 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // Limpiar datos existentes
         inventoryRepository.deleteAll();
-
-        // Crear inventarios de prueba para los productos existentes
-        Inventory inv1 = new Inventory("prod-001", 10);
-        Inventory inv2 = new Inventory("prod-002", 25);
-        Inventory inv3 = new Inventory("prod-003", 15);
-
-        inventoryRepository.save(inv1);
-        inventoryRepository.save(inv2);
-        inventoryRepository.save(inv3);
-
-        logger.info("✅ Inventarios de prueba cargados - {} registros", inventoryRepository.count());
-        logger.info("📦 Inventario 1: Producto {}, Cantidad: {}", inv1.getProductId(), inv1.getQuantity());
-        logger.info("📦 Inventario 2: Producto {}, Cantidad: {}", inv2.getProductId(), inv2.getQuantity());
-        logger.info("📦 Inventario 3: Producto {}, Cantidad: {}", inv3.getProductId(), inv3.getQuantity());
+        
+        // Crear inventario para los productos (IDs deben coincidir con Product Service)
+        inventoryRepository.save(new Inventory(1L, "Laptop Gaming", "LAP-GAM-001", 15));
+        inventoryRepository.save(new Inventory(2L, "Smartphone Pro", "PHN-PRO-002", 8));
+        inventoryRepository.save(new Inventory(3L, "Wireless Headphones", "AUD-HP-003", 25));
+        inventoryRepository.save(new Inventory(4L, "Office Chair", "FUR-CH-004", 12));
+        inventoryRepository.save(new Inventory(5L, "Desk Lamp", "HOME-LP-005", 50));
+        inventoryRepository.save(new Inventory(6L, "Mechanical Keyboard", "KEY-MEC-006", 30));
+        inventoryRepository.save(new Inventory(7L, "Gaming Mouse", "MOU-GAM-007", 20));
+        
+        System.out.println("Inventory data loaded successfully! Total items: " + inventoryRepository.count());
+        
+        // Mostrar datos cargados
+        inventoryRepository.findAll().forEach(inv -> {
+            System.out.println("Inventory: " + inv.getProductName() + " - Stock: " + inv.getAvailableQuantity());
+        });
     }
 }

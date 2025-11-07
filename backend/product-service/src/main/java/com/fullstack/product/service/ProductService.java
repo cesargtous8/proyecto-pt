@@ -1,57 +1,102 @@
 package com.fullstack.product.service;
 
 import com.fullstack.product.domain.Product;
-import com.fullstack.product.dto.ProductRequest;
 import com.fullstack.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class ProductService {
-    
+
     @Autowired
     private ProductRepository productRepository;
-    
-    public Product createProduct(ProductRequest request) {
-        Product product = new Product();
-        product.setName(request.getName());
-        product.setDescription(request.getDescription());
-        product.setPrice(request.getPrice());
+
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    public Optional<Product> getProductById(Long id) {
+        return productRepository.findById(id);
+    }
+
+    public Product createProduct(Product product) {
+        if (product.getSku() != null && productRepository.findBySku(product.getSku()).isPresent()) {
+            throw new IllegalArgumentException("Product with SKU " + product.getSku() + " already exists");
+        }
+        
+        if (product.getStockQuantity() == null) {
+            product.setStockQuantity(0);
+        }
         
         return productRepository.save(product);
     }
-    
-    @Transactional(readOnly = true)
-    public Optional<Product> getProductById(String id) {
-        return productRepository.findById(id);
-    }
-    
-    public Optional<Product> updateProduct(String id, ProductRequest request) {
+
+    public Product updateProduct(Long id, Product productDetails) {
         return productRepository.findById(id)
-            .map(existingProduct -> {
-                existingProduct.setName(request.getName());
-                existingProduct.setDescription(request.getDescription());
-                existingProduct.setPrice(request.getPrice());
-                return productRepository.save(existingProduct);
-            });
+                .map(existingProduct -> {
+                    existingProduct.setName(productDetails.getName());
+                    existingProduct.setDescription(productDetails.getDescription());
+                    existingProduct.setCategory(productDetails.getCategory());
+                    existingProduct.setPrice(productDetails.getPrice());
+                    existingProduct.setSku(productDetails.getSku());
+                    existingProduct.setStockQuantity(productDetails.getStockQuantity());
+                    return productRepository.save(existingProduct);
+                })
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
     }
-    
-    public boolean deleteProduct(String id) {
-        if (productRepository.existsById(id)) {
-            productRepository.deleteById(id);
+
+    @Transactional
+    public boolean updateProductStock(Long productId, Integer quantityChange) {
+        Optional<Product> productOpt = productRepository.findById(productId);
+        if (productOpt.isPresent()) {
+            Product product = productOpt.get();
+            int newQuantity = product.getStockQuantity() + quantityChange;
+            if (newQuantity < 0) {
+                throw new IllegalArgumentException("Insufficient stock for product: " + product.getName());
+            }
+            product.setStockQuantity(newQuantity);
+            productRepository.save(product);
             return true;
         }
         return false;
     }
-    
-    @Transactional(readOnly = true)
-    public Page<Product> getAllProducts(Pageable pageable) {
-        return productRepository.findAll(pageable);
+
+    public void deleteProduct(Long id) {
+        if (!productRepository.existsById(id)) {
+            throw new RuntimeException("Product not found with id: " + id);
+        }
+        productRepository.deleteById(id);
+    }
+
+    public Optional<Product> getProductBySku(String sku) {
+        return productRepository.findBySku(sku);
+    }
+
+    public List<Product> searchProductsByName(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    public List<Product> getProductsByCategory(String category) {
+        return productRepository.findByCategoryIgnoreCase(category);
+    }
+
+    public List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice) {
+        return productRepository.findByPriceBetween(minPrice, maxPrice);
+    }
+
+    public List<Product> getLowStockProducts(Integer threshold) {
+        return productRepository.findLowStockProducts(threshold);
+    }
+
+    public List<Product> getOutOfStockProducts() {
+        return productRepository.findOutOfStockProducts();
+    }
+
+    public List<Product> getInStockProducts() {
+        return productRepository.findInStockProducts();
     }
 }

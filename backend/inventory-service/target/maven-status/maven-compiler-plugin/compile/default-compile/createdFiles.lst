@@ -1,10 +1,13 @@
+com\fullstack\inventory\config\SwaggerConfig.class
 com\fullstack\inventory\dto\InventoryRequest.class
+com\fullstack\inventory\dto\InventoryResponse.class
 com\fullstack\inventory\config\DataInitializer.class
 com\fullstack\inventory\service\InventoryService.class
 com\fullstack\inventory\domain\Inventory.class
+com\fullstack\inventory\dto\InventoryUpdateRequest.class
+com\fullstack\inventory\dto\InventoryResponse$InventoryResponseBuilder.class
 com\fullstack\inventory\repository\InventoryRepository.class
 com\fullstack\inventory\config\CorsConfig.class
-com\fullstack\inventory\config\FeignConfig.class
 com\fullstack\inventory\InventoryServiceApplication.class
 com\fullstack\inventory\client\ProductServiceClient.class
 com\fullstack\inventory\controller\InventoryController.class

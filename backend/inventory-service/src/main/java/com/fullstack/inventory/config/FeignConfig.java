@@ -1,5 +1,7 @@
 package com.fullstack.inventory.config;
 
+import feign.Contract;
+import feign.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -7,14 +9,12 @@ import org.springframework.context.annotation.Configuration;
 public class FeignConfig {
     
     @Bean
-    public feign.RequestInterceptor requestInterceptor() {
-        return requestTemplate -> {
-            requestTemplate.header("Content-Type", "application/json");
-        };
+    public Contract feignContract() {
+        return new Contract.Default();
     }
     
     @Bean
-    public feign.Retryer retryer() {
-        return new feign.Retryer.Default(1000, 2000, 3);
+    public Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
     }
 }

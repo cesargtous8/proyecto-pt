@@ -1,57 +1,63 @@
 package com.fullstack.product.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "products")
 public class Product {
     
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
-    @NotBlank(message = "Product name is required")
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
     
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "description", length = 500)
     private String description;
     
-    @NotNull(message = "Price is required")
-    @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
+    @Column(name = "category", nullable = false, length = 50)
+    private String category;
     
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "price", nullable = false)
+    private Double price;
     
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    @Column(name = "sku", unique = true, length = 50)
+    private String sku;
     
-    // Constructors
+    @Column(name = "stock_quantity")
+    private Integer stockQuantity;
+    
+    // Constructores
     public Product() {
-        this.id = java.util.UUID.randomUUID().toString();
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
     }
     
-    public Product(String name, String description, BigDecimal price) {
-        this();
+    // Constructor completo
+    public Product(String name, String description, String category, Double price, String sku, Integer stockQuantity) {
         this.name = name;
         this.description = description;
+        this.category = category;
         this.price = price;
+        this.sku = sku;
+        this.stockQuantity = stockQuantity;
     }
     
-    // Getters and Setters
-    public String getId() {
+    // Constructor simplificado (para DataInitializer)
+    public Product(String name, String description, String category, Double price, String sku) {
+        this(name, description, category, price, sku, 0);
+    }
+    
+    // Getters y Setters
+    public Long getId() {
         return id;
     }
     
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
     
@@ -71,44 +77,49 @@ public class Product {
         this.description = description;
     }
     
-    public BigDecimal getPrice() {
+    public String getCategory() {
+        return category;
+    }
+    
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
+    public Double getPrice() {
         return price;
     }
     
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
     
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public String getSku() {
+        return sku;
     }
     
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setSku(String sku) {
+        this.sku = sku;
     }
     
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+    public Integer getStockQuantity() {
+        return stockQuantity;
     }
     
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setStockQuantity(Integer stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
     
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
-    
+    // toString method
     @Override
     public String toString() {
         return "Product{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
                 ", price=" + price +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
+                ", sku='" + sku + '\'' +
+                ", stockQuantity=" + stockQuantity +
                 '}';
     }
 }
